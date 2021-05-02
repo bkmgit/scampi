@@ -50,11 +50,12 @@ object ScampiBuild extends Build {
     jarOutputStream.close()
     Seq(propertiesFile, jarFile)
   }
-
-  lazy val root = Project(
-    id = "ScaMPI",
-    base = file("."),
-    settings = Project.defaultSettings)
+  
+  lazy val root = (project in file("."))
+    .settings(
+    name := "ScaMPI",
+    scalaVersion := "2.10.2"
+    )
 
   private def buildFile(dir: File, parts: String*): File =
     (dir /: parts) (new File(_, _))
